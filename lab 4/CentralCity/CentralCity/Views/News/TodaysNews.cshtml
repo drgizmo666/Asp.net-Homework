@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Today's News Page";
+    ViewBag.Head = "Today's News";
+}
+
+<section>
+    <h3>@ViewBag.NewsTitle</h3>
+    <h4>By: @ViewBag.NewsAuthor</h4>
+    <h5>@ViewBag.NewsDate</h5>
+    <p>@ViewBag.NewsStory </p>
+</section>
+
+

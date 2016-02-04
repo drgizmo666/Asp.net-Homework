@@ -1,0 +1,45 @@
+﻿html 
+{
+    position: relative;
+}
+body 
+{
+    margin: 0 0 25px; /* bottom = footer height */
+}
+
+html, body
+{
+    width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
+
+nav 
+{
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+section 
+{
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+footer 
+{
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+    height: 25px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
