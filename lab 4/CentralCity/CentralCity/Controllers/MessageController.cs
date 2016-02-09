@@ -152,12 +152,13 @@ namespace CentralCity.Controllers
         private ForumView GetMessageAndTopic(int? MessageId)
         {
             var MessageVM = (from m in db.Messages
-                            join t in db.Topics on m.MessageID equals t.MessageID
+                            join t in db.Topics on m.TopicID equals t.TopicID
                             where m.MessageID == MessageId
                             select new ForumView
                             {
                                 TopicName = t.TopicName,
                                 Subject = m.Subject,
+                                Title = m.Title,
                                 Name = m.Author,
                                 MessageDate = m.MessageDate,
                                 Message = m.Body
