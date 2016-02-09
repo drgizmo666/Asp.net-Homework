@@ -39,8 +39,7 @@ namespace CentralCity.Controllers
         // GET: /Message/Create
         public ActionResult Create()
         {
-            ViewBag.MessageLocation = new SelectList(db.Topics.OrderBy(t => t.TopicName), "TopicID", "TopicName");
-            ViewBag.WitchMember = new SelectList(db.Members.OrderBy(m => m.MemberName), "MemberID", "MemberName");
+            FillSelectLists();
             return View();
         }
 
@@ -82,8 +81,7 @@ namespace CentralCity.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MessageLocation = new SelectList(db.Topics.OrderBy(t => t.TopicName), "TopicID", "TopicName");
-            ViewBag.WitchMember = new SelectList(db.Members.OrderBy(m => m.MemberName), "MemberID", "MemberName");
+            FillSelectLists();
             return View(forumVM);
         }
 
@@ -94,7 +92,9 @@ namespace CentralCity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Message message = db.Messages.Find(id);
+            //Message message = db.Messages.Find(id);
+            ForumView message = GetMessageAndTopic(id);
+            FillSelectLists();
             if (message == null)
             {
                 return HttpNotFound();
@@ -107,7 +107,7 @@ namespace CentralCity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="MessageID,Subject,Title,Body,Author,MessageDate")] Message message)
+        public ActionResult Edit([Bind(Include = "MessageID,Subject,Title,Message,Name,MessageDate,TopicName")] Message message)
         {
             if (ModelState.IsValid)
             {
@@ -115,6 +115,8 @@ namespace CentralCity.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            FillSelectLists();
             return View(message);
         }
 
@@ -193,6 +195,12 @@ namespace CentralCity.Controllers
                             }).FirstOrDefault();
 
             return MessageVM;
+        }
+
+        private void FillSelectLists()
+        {
+            ViewBag.MessageLocation = new SelectList(db.Topics.OrderBy(t => t.TopicName), "TopicID", "TopicName");
+            ViewBag.WitchMember = new SelectList(db.Members.OrderBy(m => m.MemberName), "MemberID", "MemberName");
         }
     }
 }

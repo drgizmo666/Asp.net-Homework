@@ -6,14 +6,7 @@
     ViewBag.Head = "Central City Forums";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
+<section>
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
@@ -39,35 +32,35 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TopicName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MessageDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MessageID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MessageID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MessageID })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TopicName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MessageID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MessageID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MessageID })
+                </td>
+            </tr>
+        }
+
     </table>
-</body>
-</html>
+</section>
