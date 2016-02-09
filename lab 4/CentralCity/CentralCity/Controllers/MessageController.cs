@@ -39,6 +39,8 @@ namespace CentralCity.Controllers
         // GET: /Message/Create
         public ActionResult Create()
         {
+            ViewBag.MessageLocation = new SelectList(db.Topics.OrderBy(t => t.TopicName), "TopicID", "TopicName");
+            ViewBag.WitchMember = new SelectList(db.Members.OrderBy(m => m.MemberName), "MemberID", "MemberName");
             return View();
         }
 
@@ -47,16 +49,42 @@ namespace CentralCity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="MessageID,Subject,Title,Body,Author,MessageDate")] Message message)
+        public ActionResult Create([Bind(Include = "MessageID,Subject,Title,Message,Name,MessageDate,TopicName")] ForumView forumVM, int MessageLocation, int WitchMember)
         {
             if (ModelState.IsValid)
             {
+                Topic topic = (from t in db.Topics
+                               where t.TopicID == MessageLocation
+                               select t).FirstOrDefault();
+                Member author = (from mem in db.Members
+                                 where mem.MemberID == WitchMember
+                                 select mem).FirstOrDefault();
+                if(topic == null)
+                {
+                    topic = new Topic() { TopicName = forumVM.TopicName };
+                    db.Topics.Add(topic);
+                }
+
+                Message message = new Message()
+                {
+                    MessageID = forumVM.MessageID,
+                    TopicID = topic.TopicID,
+                    MemberID = author.MemberID,
+                    Author = author.MemberName,
+                    Subject = forumVM.Subject,
+                    Title = forumVM.Title,
+                    Body = forumVM.Message,
+                    MessageDate = forumVM.MessageDate
+                };
+
                 db.Messages.Add(message);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(message);
+            ViewBag.MessageLocation = new SelectList(db.Topics.OrderBy(t => t.TopicName), "TopicID", "TopicName");
+            ViewBag.WitchMember = new SelectList(db.Members.OrderBy(m => m.MemberName), "MemberID", "MemberName");
+            return View(forumVM);
         }
 
         // GET: /Message/Edit/5

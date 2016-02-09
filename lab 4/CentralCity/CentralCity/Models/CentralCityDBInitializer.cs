@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CentralCity.Models
 {
-    public class CentralCityDBInitializer : DropCreateDatabaseAlways<CentralCityDBContext>
+    public class CentralCityDBInitializer : DropCreateDatabaseIfModelChanges<CentralCityDBContext>
     {
         protected override void Seed(CentralCityDBContext context)
         {

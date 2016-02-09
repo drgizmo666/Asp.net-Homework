@@ -1,7 +1,9 @@
-﻿@model CentralCity.Models.Message
+﻿@model CentralCity.Models.ForumView
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create";
+    ViewBag.Head = "Add A Forum Message";
 }
 
 <!DOCTYPE html>
@@ -17,10 +19,16 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>Message</h4>
-            <hr />
             @Html.ValidationSummary(true)
-    
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.TopicName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MessageLocation", string.Empty)
+                    @Html.ValidationMessageFor(model => model.TopicName)
+                </div>
+            </div>
+             
             <div class="form-group">
                 @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -36,28 +44,28 @@
                     @Html.ValidationMessageFor(model => model.Title)
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Body)
-                    @Html.ValidationMessageFor(model => model.Body)
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Author)
-                    @Html.ValidationMessageFor(model => model.Author)
-                </div>
-            </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.MessageDate, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.MessageDate)
                     @Html.ValidationMessageFor(model => model.MessageDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Message)
+                    @Html.ValidationMessageFor(model => model.Message)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("WitchMember", string.Empty)
+                    @Html.ValidationMessageFor(model => model.Name)
                 </div>
             </div>
     
