@@ -48,7 +48,7 @@ namespace CentralCity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MessageID,Subject,Title,Message,Name,MessageDate,TopicName")] ForumView forumVM, int MessageLocation, int WitchMember)
+        public ActionResult Create([Bind(Include = "MessageID,Subject,Title,Body,Author,MessageDate,TopicName")] ForumView forumVM, int MessageLocation, int WitchMember)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +62,7 @@ namespace CentralCity.Controllers
                 {
                     topic = new Topic() { TopicName = forumVM.TopicName };
                     db.Topics.Add(topic);
+                    db.SaveChanges();
                 }
 
                 Message message = new Message()
@@ -72,7 +73,7 @@ namespace CentralCity.Controllers
                     Author = author.MemberName,
                     Subject = forumVM.Subject,
                     Title = forumVM.Title,
-                    Body = forumVM.Message,
+                    Body = forumVM.Body,
                     MessageDate = forumVM.MessageDate
                 };
 
@@ -92,8 +93,8 @@ namespace CentralCity.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Message message = db.Messages.Find(id);
-            ForumView message = GetMessageAndTopic(id);
+            Message message = db.Messages.Find(id);
+            //ForumView message = GetMessageAndTopic(id);
             FillSelectLists();
             if (message == null)
             {
@@ -107,7 +108,7 @@ namespace CentralCity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MessageID,Subject,Title,Message,Name,MessageDate,TopicName")] Message message)
+        public ActionResult Edit([Bind(Include = "MessageID, TopicID, MemberID, Subject,Title,Body,Author,MessageDate,TopicName")] Message message)
         {
             if (ModelState.IsValid)
             {
@@ -155,6 +156,53 @@ namespace CentralCity.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(String searchTerm)
+        {
+            //TODO: Get a List of messages view models
+            List<ForumView> forumVMs = new List<ForumView>();
+            //TODO: Get the books that matches the search term
+            var messages = (from m in db.Messages
+                               where m.Body.Contains(searchTerm)
+                               select m).ToList<Message>();
+            //In a Loop:
+                
+                
+            foreach(Message m in messages)
+            {
+                //TODO: Get the Stack that contains each book
+                var topic = (from t in db.Topics
+                             where t.TopicID == m.TopicID
+                             select t).FirstOrDefault();
+                //TODO: Create View models for the book and put them in the list
+                forumVMs.Add(new ForumView()
+                {
+                    Title = m.Title,
+                    Author = m.Author,
+                    Body = m.Body,
+                    TopicName = topic.TopicName,
+                    Subject = m.Subject,
+                    MessageDate = m.MessageDate
+                });
+            }
+
+            //TODO: if there is just one book, display it
+            if (forumVMs.Count == 1)
+            {
+                return View("Details", forumVMs[0]);
+            }
+            //TODO: if there is more than one book display the list of books
+            else 
+            {
+                return View("Index", forumVMs);
+            }
+
+        }
         private List<ForumView> GetMessagesandTopics(int? messageId)
         {
             var messages = new List<ForumView>();
@@ -167,12 +215,12 @@ namespace CentralCity.Controllers
                 {
                         var forumVM = new ForumView();
                         forumVM.MessageID = m.MessageID;
-                        forumVM.Message = m.Body;
+                        forumVM.Body = m.Body;
                         forumVM.Subject = m.Subject;
                         forumVM.Title = m.Title;
                         forumVM.MessageDate = m.MessageDate;
                         forumVM.TopicName = t.TopicName;
-                        forumVM.Name = m.Author;
+                        forumVM.Author = m.Author;
                         messages.Add(forumVM);
                 }
             }
@@ -189,9 +237,9 @@ namespace CentralCity.Controllers
                                 TopicName = t.TopicName,
                                 Subject = m.Subject,
                                 Title = m.Title,
-                                Name = m.Author,
+                                Author = m.Author,
                                 MessageDate = m.MessageDate,
-                                Message = m.Body
+                                Body = m.Body
                             }).FirstOrDefault();
 
             return MessageVM;

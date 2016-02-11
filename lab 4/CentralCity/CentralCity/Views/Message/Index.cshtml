@@ -8,6 +8,7 @@
 
 <section>
     <p>
+        @Html.ActionLink("Search for a Message", "Search")
         @Html.ActionLink("Create New", "Create")
     </p>
     <table class="table">
@@ -22,13 +23,13 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.MessageDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Message)
+                @Html.DisplayNameFor(model => model.Body)
             </th>
             <th></th>
         </tr>
@@ -46,13 +47,13 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Author)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MessageDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Message)
+                    @Html.DisplayFor(modelItem => item.Body)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.MessageID }) |

@@ -47,18 +47,18 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Message, new { cols = 60, rows = 10 })
-                    @Html.ValidationMessageFor(model => model.Message)
+                    @Html.TextAreaFor(model => model.Body, new { cols = 60, rows = 10 })
+                    @Html.ValidationMessageFor(model => model.Body)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("WitchMember", string.Empty)
-                    @Html.ValidationMessageFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Author)
                 </div>
             </div>
 

@@ -107,7 +107,6 @@ C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\b
 C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.dll
 C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.pdb
-C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.csprojResolveAssemblyReference.cache
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\bin\CentralCity.dll.config
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\bin\CentralCity.dll
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\bin\CentralCity.pdb
@@ -163,3 +162,4 @@ C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\b
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.csprojResolveAssemblyReference.cache
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.dll
 C:\Users\SQLuser\Desktop\Asp.net-Homework-master\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.pdb
+C:\Users\james\Documents\GitHub\Asp.net-Homework\lab 4\CentralCity\CentralCity\obj\Debug\CentralCity.csprojResolveAssemblyReference.cache

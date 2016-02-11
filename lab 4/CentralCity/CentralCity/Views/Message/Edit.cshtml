@@ -1,4 +1,4 @@
-﻿@model CentralCity.Models.ForumView
+﻿@model CentralCity.Models.Message
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,14 +14,8 @@
         <div class="form-horizontal">
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.MessageID)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TopicName, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("MessageLocation", string.Empty)
-                    @Html.ValidationMessageFor(model => model.TopicName)
-                </div>
-            </div>
+            @Html.HiddenFor(model => model.TopicID)
+            @Html.HiddenFor(model => model.MemberID)
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Subject, new { @class = "control-label col-md-2" })
@@ -48,21 +42,12 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Message, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Message, new { cols = 60, rows = 10 })
-                    @Html.ValidationMessageFor(model => model.Message)
+                    @Html.TextAreaFor(model => model.Body, new { cols = 60, rows = 10 })
+                    @Html.ValidationMessageFor(model => model.Body)
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("WitchMember", string.Empty)
-                    @Html.ValidationMessageFor(model => model.Name)
-                </div>
-            </div>
-                
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

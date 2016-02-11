@@ -183,6 +183,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Centralmap.jpg" />
+    <Content Include="Images\flash.png" />
     <Content Include="Images\iris.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -233,6 +234,7 @@
     <Content Include="Views\Topic\Details.cshtml" />
     <Content Include="Views\Topic\Edit.cshtml" />
     <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Message\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
